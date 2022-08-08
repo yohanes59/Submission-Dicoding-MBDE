@@ -16,3 +16,4 @@ jobs:
           heroku_email: ${{secrets.HEROKU_EMAIL}}
           buildpack: |
             "https://github.com/heroku/heroku-buildpack-nodejs.git"
+            "https://github.com/heroku/heroku-buildpack-nginx.git"
