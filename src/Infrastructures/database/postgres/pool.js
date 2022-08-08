@@ -9,6 +9,19 @@ const testConfig = {
   database: process.env.PGDATABASE_TEST,
 };
 
-const pool = process.env.NODE_ENV === 'test' ? new Pool(testConfig) : new Pool();
+const herokuConfig = {
+  ssl: {
+    rejectUnauthorized: false,
+  },
+};
+
+const createPool = () => {
+  if (process.env.NODE_ENV === 'production') return new Pool({ ...herokuConfig });
+  if (process.env.NODE_ENV === 'test') return new Pool({ ...testConfig });
+  if (process.env.NODE_ENV === 'development') return new Pool();
+  return new Pool({ ...testConfig, ...herokuConfig });
+};
+
+const pool = createPool();
 
 module.exports = pool;
