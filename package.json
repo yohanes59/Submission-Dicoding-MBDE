@@ -1,12 +1,16 @@
 {
   "name": "forum-api",
   "version": "1.0.0",
+  "engines": {
+    "node": "14.17.0",
+    "npm": "6.14.13"
+  },
   "description": "",
   "main": "index.js",
   "scripts": {
     "start": "node src/app.js",
     "start:dev": "nodemon src/app.js",
-    "test": "jest --setupFiles dotenv/config -i",
+    "test": "jest --testTimeout=15000 --setupFiles dotenv/config -i",
     "test:watch:change": "jest --watch --setupFiles dotenv/config -i",
     "test:watch": "jest --watchAll --coverage --setupFiles dotenv/config -i",
     "migrate": "node-pg-migrate --reject-unauthorized=false",
